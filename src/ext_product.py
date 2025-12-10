@@ -4,36 +4,46 @@ from src.product import Product
 class Smartphone(Product):
 
     def __init__(
-        self, name, description, __price, quantity, efficiency, model, memory, color
+        self,
+        name,
+        description,
+        price,
+        quantity,
+        efficiency,
+        model,
+        memory,
+        color,  # __price
     ):
-        super().__init__(name, description, __price, quantity)
+        super().__init__(name, description, price, quantity)  # __price
         self.efficiency = efficiency
         self.model = model
         self.memory = memory
         self.color = color
 
-    def __add__(self, other):
-        if isinstance(other, type(self)):
-            self.sum_of_products = float(self.quantity) + float(other.quantity)
-            return self.sum_of_products
-        raise TypeError
+    # def __add__(self, other):
+    #     if isinstance(other, type(self)):
+    #         self.sum_of_products = float(self.quantity) + float(other.quantity)
+    #         return self.sum_of_products
+    #     raise TypeError
 
 
 class LawnGrass(Product):
 
     def __init__(
-        self, name, description, __price, quantity, country, germination_period, color
+        self,
+        name,
+        description,
+        price,
+        quantity,
+        country,
+        germination_period,
+        color,
     ):
-        super().__init__(name, description, __price, quantity)
+        """init method"""
+        super().__init__(name, description, price, quantity)  # __price
         self.country = country
         self.germination_period = germination_period
         self.color = color
-
-    def __add__(self, other):
-        if isinstance(other, type(self)):
-            self.sum_of_products = float(self.quantity) + float(other.quantity)
-            return self.sum_of_products
-        raise TypeError
 
 
 if __name__ == "__main__":
@@ -52,3 +62,4 @@ if __name__ == "__main__":
     )
 
     print(smartphone1 + smartphone2)
+    print(smartphone1 + 1)

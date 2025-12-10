@@ -7,7 +7,6 @@ class Category:
     category_count = 0
     product_count = 0
     all_products_count = 0
-    # quantity_count: float = 0
 
     def __init__(self, name: str, description: str, products: list[Product]):
         """Для класса Category определите следующие свойства:
@@ -51,7 +50,6 @@ class Category:
 
 
 if __name__ == "__main__":
-
     product1 = Product(
         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
     )
@@ -69,3 +67,10 @@ if __name__ == "__main__":
     )
 
     print("q=", str(category1))
+
+    class Book:
+        def __init__(self, title):
+            self.title = title
+
+        def get_title(self):
+            return self.title

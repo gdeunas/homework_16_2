@@ -1,7 +1,8 @@
-from src.baseproduct import BaseProduct
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
 
-class Product(BaseProduct):
+class Product(PrintMixin, BaseProduct):
     def __init__(
         self,
         name: str,
@@ -12,7 +13,7 @@ class Product(BaseProduct):
     ):
         """Для класса Product определите следующие свойства:
         название (name),
-        описание (description ),
+        описание (description),
         цена (price),
         количество в наличии (quantity)."""
         self.name = name
@@ -20,14 +21,19 @@ class Product(BaseProduct):
         self.__price = price
         self.quantity = quantity
         self.sum_of_products = sum_of_products
+        super().__init__()
 
     def __add__(self, other):
-        if isinstance(other, Product):
-            self.sum_of_products = float(self.__price) * float(self.quantity) + float(
-                other.__price
-            ) * float(other.quantity)
-            return self.sum_of_products
-        raise TypeError
+        if not isinstance(other, Product):
+            raise TypeError(f"Нельзя сложить {type(self)} с {type(other)}")
+
+        if type(self) is Product and type(other) is Product:
+            return float(self.price * self.quantity + other.price * other.quantity)
+
+        if type(self) is type(other):
+            return self.quantity + other.quantity
+
+        raise TypeError(f"Нельзя сложить {type(self)} с {type(other)}")
 
     @classmethod
     def new_product(cls, product):
@@ -49,4 +55,6 @@ class Product(BaseProduct):
 
 
 if __name__ == "__main__":
-    pass
+    product1 = Product(
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+    )
