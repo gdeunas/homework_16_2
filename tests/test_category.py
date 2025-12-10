@@ -1,5 +1,8 @@
 import pytest
 
+from src.category import Order
+from src.product import Product
+
 
 def test_category_init(first_category, second_category):
     """test category class"""
@@ -43,3 +46,10 @@ def test_category_products_setter_error(
 def test_category_product_setter_smartphone(first_category, ext_product_smartphone1):
     first_category.add_product(ext_product_smartphone1)
     assert first_category.product_in_list[-1].name == "Samsung Galaxy S23 Ultra"
+
+
+def test_order_str_method():
+    product = Product("Prod10", "Desc10", 100.0, 5)
+    order = Order(product, 3)
+    expected_str = f"Заказ на товар: {product.name}, количество: 3, итоговая стоимость: {product.price * 3} руб."
+    assert str(order) == expected_str

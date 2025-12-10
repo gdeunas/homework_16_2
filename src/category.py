@@ -1,9 +1,10 @@
 from typing import Union
 
+from src.base_product import BaseOrder
 from src.product import Product
 
 
-class Category:
+class Category(BaseOrder):
     category_count = 0
     product_count = 0
     all_products_count = 0
@@ -43,10 +44,18 @@ class Category:
             quantity_count += product.quantity
         return f"{self.name}, количество продуктов: {quantity_count} шт."
 
-    # @products.setter
-    # def products(self, product: Product):
-    #     self.__products.append(product)
-    #     Category.all_products_count += 1
+
+class Order(BaseOrder):
+    def __init__(self, product: Product, quantity: int):
+        self.product = product
+        self.quantity = quantity
+        self.total_cost = self.product.price * self.quantity
+
+    def __str__(self):
+        return (
+            f"Заказ на товар: {self.product.name}, количество: {self.quantity}, "
+            f"итоговая стоимость: {self.total_cost} руб."
+        )
 
 
 if __name__ == "__main__":
@@ -65,12 +74,4 @@ if __name__ == "__main__":
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
         [product1, product2, product3],
     )
-
     print("q=", str(category1))
-
-    class Book:
-        def __init__(self, title):
-            self.title = title
-
-        def get_title(self):
-            return self.title
