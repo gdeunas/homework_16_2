@@ -20,12 +20,6 @@ class Smartphone(Product):
         self.memory = memory
         self.color = color
 
-    # def __add__(self, other):
-    #     if isinstance(other, type(self)):
-    #         self.sum_of_products = float(self.quantity) + float(other.quantity)
-    #         return self.sum_of_products
-    #     raise TypeError
-
 
 class LawnGrass(Product):
 
